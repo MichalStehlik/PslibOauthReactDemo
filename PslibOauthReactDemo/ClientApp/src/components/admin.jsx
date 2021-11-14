@@ -1,17 +1,22 @@
-﻿import { useState, useEffect, useCallback } from "react";
+﻿import { useRequireAuth } from "./Auth/useRequireAuth";
+import { useState, useEffect, useCallback } from "react";
 import { Spinner, Alert, Button } from "reactstrap";
+import { useAuthContext } from "../providers/AuthProvider";
 import axios from "axios";
 
-const Public = () => {
+const Admin = () => {
     const [response, setResponse] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
+    const [{ accessToken }] = useAuthContext();
+    useRequireAuth();
     const FetchData = useCallback(() => {
         setIsLoading(true);
         setError(false);
-        axios.get("api/dices", {
+        axios.get("api/dices/hexadecimal", {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + accessToken
             }
         })
             .then(response => {
@@ -29,14 +34,14 @@ const Public = () => {
             .finally(() => {
                 setIsLoading(false);
             })
-    },[]);
+    }, []);
 
     useEffect(() => {
         FetchData();
     }, []);
 
     if (isLoading) {
-        return <Spinner />
+        return <Spinner color="primary" />
     } else if (error) {
         return <Alert color="danger">Při získávání dat došlo k chybě.</Alert>
     } else if (response) {
@@ -46,4 +51,4 @@ const Public = () => {
     }
 }
 
-export default Public;
+export default Admin;

@@ -25,6 +25,12 @@ export const NavMenu = props => {
                             <NavItem>
                                 <NavLink tag={Link} to="/protected">Protected</NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to="/unprotected">Unprotected</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to="/admin">Admin</NavLink>
+                            </NavItem>
                         </Nav>
                         <Nav className="ml-auto" navbar>
                             <NavItem>

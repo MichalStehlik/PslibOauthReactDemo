@@ -4,6 +4,8 @@ import Layout from './components/Layout';
 import Home from './components/Home';
 import NotFound from './components/General/NotFound';
 import Protected from './components/Protected';
+import Unprotected from './components/Unprotected';
+import Admin from './components/Admin';
 import Public from './components/Public';
 import { AuthProvider } from "./providers/AuthProvider";
 import SignInCallback from "./components/Auth/SignInCallback";
@@ -27,6 +29,8 @@ export default class App extends Component {
                             <Route path="/sign-in" element={<Home />} />
                             <Route path="/sign-out" element={<Home />} />
                             <Route path='/public' element={<Public />} />
+                            <Route path='/unprotected' element={<Unprotected />} />
+                            <Route path='/admin' element={<Admin />} />
                             <Route path='/protected' element={<Protected />} />
                             <Route path="*" element={<NotFound />} />
                       </Routes>
