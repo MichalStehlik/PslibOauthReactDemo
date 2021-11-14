@@ -13,7 +13,7 @@ const Protected = () => {
     const FetchData = useCallback(() => {
         setIsLoading(true);
         setError(false);
-        axios.get("api/dices/decimal", {
+        axios.get("api/user", {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: "Bearer " + accessToken
@@ -45,7 +45,7 @@ const Protected = () => {
     } else if (error) {
         return <Alert color="danger">Při získávání dat došlo k chybě.</Alert>
     } else if (response) {
-        return <p><span classname="m-2">{response.roll}</span> <Button onClick={e => { FetchData() }}>Roll</Button></p>
+        return <p><span classname="m-2">{response.id}</span> <Button onClick={e => { FetchData() }}>Fetch</Button></p>
     } else {
         return <Spinner />
     }
