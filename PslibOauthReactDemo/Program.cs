@@ -1,9 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using PslibOauthReactDemo.Data;
 using PslibOauthReactDemo.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
