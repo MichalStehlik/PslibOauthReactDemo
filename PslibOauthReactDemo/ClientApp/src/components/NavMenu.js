@@ -31,6 +31,9 @@ export const NavMenu = props => {
                             <NavItem>
                                 <NavLink tag={Link} to="/admin">Admin</NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to="/notes">Notes</NavLink>
+                            </NavItem>
                         </Nav>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
