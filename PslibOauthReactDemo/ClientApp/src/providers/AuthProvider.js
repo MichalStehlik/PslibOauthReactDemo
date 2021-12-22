@@ -92,18 +92,23 @@ export const AuthProvider = props => {
             console.info("Uživatel byl přihlášen");
         });
         userManager.events.addUserUnloaded(() => {
+            dispatch({ type: USER_EXPIRED });
             console.info("Informace o přihlášení jsou neplatné.");
         });
         userManager.events.addAccessTokenExpiring(() => {
+            dispatch({ type: USER_EXPIRING });
             console.info("Platnost přihlášení brzy vyprší.");
         });
         userManager.events.addAccessTokenExpired(() => {
+            dispatch({ type: USER_EXPIRED });
             console.info("Platnost přihlášení vypršela.");
         });
         userManager.events.addSilentRenewError(() => {
+            dispatch({ type: SILENT_RENEW_ERROR });
             console.info("Nepodařilo se obnovit přihlášení.");
         });
         userManager.events.addUserSignedOut(() => {
+            dispatch({ type: USER_EXPIRED });
             console.info("Uživatel byl odhlášen.");
         });
 
